@@ -12,6 +12,14 @@
 
 #include "pipex.h"
 
+/**
+ * @brief Frees a null-terminated array of strings and the array itself.
+ * 
+ * Iterates through each string in the array, frees them individually,
+ * then frees the array pointer.
+ * 
+ * @param kid Null-terminated array of strings to be freed
+ */
 void	ft_free_kids(char **kid)
 {
 	int	i;
@@ -25,6 +33,18 @@ void	ft_free_kids(char **kid)
 	free(kid);
 }
 
+/**
+ * @brief Executes second command in pipeline with proper I/O redirection.
+ * 
+ * Sets up input from pipe and output to file descriptor, then executes
+ * the command and exits with appropriate status code.
+ * 
+ * @param fd File descriptor array for input/output files
+ * @param int_array Pipe file descriptors for inter-process communication
+ * @param kid_2 Command and arguments array for second command
+ * @param env Environment variables array
+ * @return Always exits with status 127 on failure
+ */
 int	ft_kid_2(int *fd, int *int_array, char **kid_2, char **env)
 {
 	char	*path_command;
@@ -44,6 +64,17 @@ int	ft_kid_2(int *fd, int *int_array, char **kid_2, char **env)
 	exit(127);
 }
 
+/**
+ * @brief Executes first command in pipeline with input/output redirection.
+ * 
+ * Sets up input from file descriptor and output to pipe, then executes
+ * the first command in the pipeline.
+ * 
+ * @param fd File descriptor array for input/output files
+ * @param int_array Pipe file descriptors for inter-process communication
+ * @param kid_1 Command and arguments array for first command
+ * @param env Environment variables array
+ */
 void	ft_kid_1(int *fd, int *int_array, char **kid_1, char **env)
 {
 	char	*path_command;
@@ -62,6 +93,18 @@ void	ft_kid_1(int *fd, int *int_array, char **kid_1, char **env)
 	ft_free_kids(kid_1);
 }
 
+/**
+ * @brief Creates and manages a two-command pipeline with proper I/O handling.
+ * 
+ * Forks two child processes to execute commands in pipeline, managing
+ * pipe communication and waiting for both processes to complete.
+ * 
+ * @param fd File descriptor array for input/output files
+ * @param kid_1 Command and arguments array for first command
+ * @param kid_2 Command and arguments array for second command
+ * @param env Environment variables array
+ * @return Exit status of the second command
+ */
 int	ft_forks(int *fd, char **kid_1, char **kid_2, char **env)
 {
 	int		int_array[2];
