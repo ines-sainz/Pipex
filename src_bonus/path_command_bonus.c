@@ -12,6 +12,17 @@
 
 #include "pipex_bonus.h"
 
+/**
+ * @brief Searches for executable command in PATH directories.
+ * 
+ * Iterates through PATH directories to find executable command,
+ * checking access permissions and returning full path if found.
+ * 
+ * @param path_list Array of PATH directories to search
+ * @param path_mid Temporary string for path construction
+ * @param kid Command name to search for
+ * @return Full path to executable command or NULL if not found
+ */
 char	*ft_check_command(char **path_list, char *path_mid, char *kid)
 {
 	int		j;
@@ -40,6 +51,17 @@ char	*ft_check_command(char **path_list, char *path_mid, char *kid)
 	return (NULL);
 }
 
+/**
+ * @brief Resolves command path from environment PATH variable.
+ * 
+ * Checks if command contains path separator or searches through PATH
+ * environment variable to find executable command location.
+ * 
+ * @param kid Command and arguments array (command is at index 0)
+ * @param env Environment variables array
+ * @param path_mid Temporary string for path construction
+ * @return Full path to command or NULL if not found
+ */
 char	*ft_get_path_command(char **kid, char **env, char *path_mid)
 {
 	int		i;
