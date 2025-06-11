@@ -13,7 +13,7 @@
 # Name of the final executable for the main program
 NAME		= pipex
 
-# Name of the final executable for the bonus (checker)
+# Name of the final executable for the bonus
 NAME_BONUS	= pipex_bonus
 
 # Compiler to use
