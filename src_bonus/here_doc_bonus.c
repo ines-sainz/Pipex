@@ -12,6 +12,15 @@
 
 #include "pipex_bonus.h"
 
+/**
+ * @brief Creates end-of-file delimiter string for here document processing.
+ * 
+ * Allocates memory and copies the delimiter from argv[2], appending a
+ * newline character for comparison purposes.
+ * 
+ * @param argv Command line arguments array containing the delimiter
+ * @return Newly allocated string with delimiter and newline terminator
+ */
 char	*ft_get_eof(char **argv)
 {
 	char	*eof;
@@ -23,6 +32,17 @@ char	*ft_get_eof(char **argv)
 	return (eof);
 }
 
+/**
+ * @brief Reads user input and writes to temporary file until delimiter found.
+ * 
+ * Continuously prompts user for input, writing each line to temporary file
+ * until the specified delimiter is encountered or EOF is reached.
+ * 
+ * @param fd File descriptor array for temporary and output files
+ * @param argv Command line arguments containing the delimiter
+ * @param buffer Buffer for reading user input
+ * @return 0 on success, 1 on read error
+ */
 int	ft_write_temp(int *fd, char **argv, char *buffer)
 {
 	int	n_bytes;
@@ -47,6 +67,17 @@ int	ft_write_temp(int *fd, char **argv, char *buffer)
 	return (0);
 }
 
+/**
+ * @brief Implements here document functionality for pipeline processing.
+ * 
+ * Creates temporary file from user input using delimiter, then executes
+ * pipeline commands with temporary file as input and specified output file.
+ * 
+ * @param argc Number of command line arguments
+ * @param argv Command line arguments array
+ * @param env Environment variables array
+ * @return Exit status of pipeline execution or error code
+ */
 int	ft_here_doc(int argc, char **argv, char **env)
 {
 	int		fd[2];
