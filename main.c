@@ -12,6 +12,15 @@
 
 #include "pipex.h"
 
+/**
+ * @brief Prints error messages to stderr based on error type.
+ * 
+ * Outputs specific error messages for different error conditions and
+ * returns error status code.
+ * 
+ * @param i Error type identifier (1 for arguments, 2 for files)
+ * @return Always returns 1 to indicate error status
+ */
 int	ft_error(int i)
 {
 	if (i == 1)
@@ -21,6 +30,17 @@ int	ft_error(int i)
 	return (1);
 }
 
+/**
+ * @brief Main function that handles pipeline execution with file I/O.
+ * 
+ * Processes command line arguments to execute pipeline commands, handling
+ * both regular file operations and here document functionality.
+ * 
+ * @param argc Number of command line arguments
+ * @param argv Command line arguments array
+ * @param env Environment variables array
+ * @return Exit status of executed pipeline or error code
+ */
 int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
