@@ -1,12 +1,6 @@
 # 🔗 Pipex
 
-Welcome to **Pipex**, a project that dives deep into the UNIX mechanism of **pipes** 🧪!  
-It is part of the 42 school curriculum and written in C. Through this project, you’ll learn how commands in shell are connected and executed using low-level process and file descriptor management.
-
----
-
-## 📌 What is Pipex?
-
+This proyect dives deep into the UNIX mechanism of **pipes**.
 Pipex recreates the behavior of shell piping (`|`) by executing a sequence of commands where the output of one command is passed as input to the next.
 
 This project replicates the functionality of:
